@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Bucketlist
+from .models import YambScores
 
-class BucketlistSerializer(serializers.ModelSerializer):
+class YambScoresSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format"""
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
-        model = Bucketlist
-        fields = ('id', 'name')
+        model = YambScores
+        fields = ('id', 'player1_name', 'player1_score', 'player2_name', 'player2_score')
         # read_only_fields = ('date_created', 'date_modified')
