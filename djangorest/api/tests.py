@@ -41,3 +41,33 @@ class ViewTestCase(TestCase):
     def test_api_can_create_a_yamb_score(self):
         """Test the api has yamb score creation capability."""
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+
+    def test_api_can_get_a_yamb_score(self):
+        """Test the api has yamb score retrieval capability."""
+        yamb_score = YambScores.objects.get()
+        response = self.client.get(
+            reverse('details',
+            kwargs={'pk': yamb_score.id}), format="json")
+
+        self.assertEqual(self.response.status_code, status.HTTP_200_OK) # This test still fails
+        self.assertContains(response, yamb_score)
+
+    def test_api_can_update_yamb_score(self):
+        """Test the api can update a given yamb score."""
+        yamb_score = YambScores.objects.get()
+        change_yamb_score = {'player1_name': 'Milan', 'player1_score': 800, 'player2_name': 'Emma', 'player2_score': 600}
+        res = self.client.put(
+            reverse('details', kwargs={'pk': yamb_score.id}),
+            change_yamb_score, format='json'
+        )
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+    def test_api_can_delete_yamb_score(self):
+        """Test the api can delete a yamb score."""
+        yamb_score = YambScores.objects.get()
+        response = self.client.delete(
+            reverse('details', kwargs={'pk': yamb_score.id}),
+            format='json',
+            follow=True)
+
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
