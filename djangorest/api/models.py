@@ -9,7 +9,7 @@ class YambScores(models.Model):
 
     def __str__(self):
         """Return a human readable representation of the model instance."""
-        return "{}".format(self)
+        return "{}".format(self.id)
 
     class Meta:
         verbose_name_plural = "Yamb Scores"
