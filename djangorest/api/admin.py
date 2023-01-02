@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import YambScores
+from .models import *
 # Register your models here.
-admin.site.register(YambScores)
+admin.site.register(Player)
+admin.site.register(Score)
+admin.site.register(Game)

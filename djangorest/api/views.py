@@ -1,10 +1,10 @@
 from rest_framework import generics
 from .serializers import YambScoresSerializer
-from .models import YambScores
+from .models import *
 
 class CreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of the API."""
-    queryset = YambScores.objects.all()
+    queryset = Game.objects.all()
     serializer_class = YambScoresSerializer
 
     def perform_create(self, serializer):
@@ -13,5 +13,5 @@ class CreateView(generics.ListCreateAPIView):
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     """This class handles the http GET, PUT and DELETE requests."""
-    queryset = YambScores.objects.all()
+    queryset = Game.objects.all()
     serializer_class = YambScoresSerializer
